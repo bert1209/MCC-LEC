@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mcc_final/Pages/LoginPage.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Auth/auth.dart';
 import '../Function/TeksFunction.dart';
 
@@ -20,29 +20,35 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerUsername = TextEditingController();
 
-  Future<void> signInWithEmailAndPassword() async {
-    try {
-      await auth().signInWithEmailAndPassword(
-          email: _controllerEmail.text, password: _controllerPassword.text);
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
-    }
-  }
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
-      await auth().createUserWithEmailAndPassword(
+      // Membuat pengguna baru dengan email dan password
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
+      );
+
+      // Menyimpan username ke Firestore
+      await _firestore.collection('users').doc(userCredential.user?.uid).set({
+        'username': _controllerUsername.text,
+        'email': _controllerEmail.text,
+        'uid': userCredential.user?.uid,
+      });
+
+      // Navigasi ke halaman login setelah registrasi berhasil
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
       );
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
       });
     }
-    print(_controllerEmail);
   }
 
   @override
@@ -158,9 +164,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    auth().createUserWithEmailAndPassword(
-                        email: _controllerEmail.text,
-                        password: _controllerPassword.text);
+                    createUserWithEmailAndPassword(
+                        // email: _controllerEmail.text,
+                        // password: _controllerPassword.text,
+                        // username: _controllerUsername.text,
+                        // username: _controllerUsername.text,
+                        );
                     var navigator = Navigator.of(context);
                     navigator.push(
                       MaterialPageRoute(

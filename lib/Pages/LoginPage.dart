@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mcc_final/Function/TeksFunction.dart';
 import 'package:mcc_final/Pages/AuthPage.dart';
+import 'package:mcc_final/Pages/HomePage.dart';
 import '../Auth/auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -23,19 +24,6 @@ class LoginPageState extends State<LoginPage> {
     try {
       await auth().signInWithEmailAndPassword(
           email: _controllerEmail.text, password: _controllerPassword.text);
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
-    }
-  }
-
-  Future<void> createUserWithEmailAndPassword() async {
-    try {
-      await auth().createUserWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -128,7 +116,7 @@ class LoginPageState extends State<LoginPage> {
                     navigator.push(
                       MaterialPageRoute(
                         builder: (builder) {
-                          return LoginPage();
+                          return HomePage();
                         },
                       ),
                     );
@@ -161,11 +149,7 @@ class LoginPageState extends State<LoginPage> {
                 width: 325,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // googleSignIn();
-                    // signInGoogles(context);
-                    // signOutGoogle();
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color(0xFF000025),
                     backgroundColor: const Color(0xFFFFFFFF),
@@ -176,7 +160,6 @@ class LoginPageState extends State<LoginPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // const SizedBox(width: 100),
                       SizedBox(
                         child: Container(
                           width: 35,
