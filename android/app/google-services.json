@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "570154092334",
+    "project_id": "mcc-lec",
+    "storage_bucket": "mcc-lec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570154092334:android:c325cb9371d68be2d21cbf",
+        "android_client_info": {
+          "package_name": "com.example.mcc_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA08wy6YyWLdDDJ7YFPSlDUQfyNNyE1Q2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
