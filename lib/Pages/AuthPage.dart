@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mcc_final/Pages/LoginPage.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -40,7 +41,16 @@ class _AuthPageState extends State<AuthPage> {
                 width: 335,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    var navigator = Navigator.of(context);
+                    navigator.push(
+                      MaterialPageRoute(
+                        builder: (builder) {
+                          return LoginPage();
+                        },
+                      ),
+                    );
+                  },
                   child: Text(
                     "Sign In",
                     style: TextStyle(
@@ -64,7 +74,9 @@ class _AuthPageState extends State<AuthPage> {
                 width: 335,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/registerPage');
+                  },
                   child: Text(
                     "Register",
                     style: TextStyle(

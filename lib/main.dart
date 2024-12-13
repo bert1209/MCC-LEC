@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mcc_final/Pages/AuthPage.dart';
+import 'package:mcc_final/Pages/LoginPage.dart';
+import 'package:mcc_final/Pages/RegisterPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +23,10 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: const AuthPage(),
-      routes: {},
+      routes: {
+        '/loginPage': (context) => const LoginPage(),
+        '/registerPage': (context) => const RegisterPage(),
+      },
     );
   }
 }

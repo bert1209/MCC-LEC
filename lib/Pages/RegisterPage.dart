@@ -1,48 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mcc_final/Function/TeksFunction.dart';
-import 'package:mcc_final/Pages/AuthPage.dart';
-import '../Auth/auth.dart';
+import 'package:mcc_final/Pages/LoginPage.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+import '../Function/TeksFunction.dart';
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
-  String? errorMessage = '';
-  bool isLogin = true;
-
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerUsername = TextEditingController();
-
-  Future<void> signInWithEmailAndPassword() async {
-    try {
-      await auth().signInWithEmailAndPassword(
-          email: _controllerEmail.text, password: _controllerPassword.text);
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
-    }
-  }
-
-  Future<void> createUserWithEmailAndPassword() async {
-    try {
-      await auth().createUserWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +32,34 @@ class LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(
-                height: 150,
+                height: 110,
+              ),
+              SizedBox(
+                width: 350,
+                child: TextField(
+                  controller: _controllerUsername,
+                  style: const TextStyle(fontFamily: "Gotham", fontSize: 15),
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Color(0xFF777777),
+                        ),
+                        borderRadius: BorderRadius.circular(15)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Color(0xFF333333),
+                        ),
+                        borderRadius: BorderRadius.circular(15)),
+                    fillColor: const Color(0xFFFFFFFF),
+                    filled: true,
+                    hintText: "Username",
+                    contentPadding: EdgeInsets.all(15),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               SizedBox(
                 width: 350,
@@ -130,7 +128,7 @@ class LoginPageState extends State<LoginPage> {
                     );
                   },
                   child: Text(
-                    "Sign In",
+                    "Register",
                     style: TextStyle(
                       fontFamily: "Poppin",
                       fontSize: 20,
@@ -193,7 +191,7 @@ class LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(width: 10),
                       const Text(
-                        "Sign In With Google",
+                        "Sign Up With Google",
                         style: TextStyle(
                           fontSize: 20,
                           fontFamily: "SemiPoppins",
@@ -209,16 +207,16 @@ class LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Didn't have an account?",
+                    "Already have an account?",
                     style: TextStyle(
                       color: Colors.white,
                     ),
                   ),
                   TextButtons(
-                    Texts: "Register Now!",
+                    Texts: "Sign in now!",
                     TextSize: 15,
                     onPress: () {
-                      Navigator.pushNamed(context, '/registerPage');
+                      Navigator.pushNamed(context, '/loginPage');
                     },
                   ),
                 ],
