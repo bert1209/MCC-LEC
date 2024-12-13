@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mcc_final/Pages/LoginPage.dart';
 
+import '../Auth/auth.dart';
 import '../Function/TeksFunction.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -11,9 +14,46 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  String? errorMessage = '';
+  bool isLogin = true;
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerUsername = TextEditingController();
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await auth().signInWithEmailAndPassword(
+          email: _controllerEmail.text, password: _controllerPassword.text);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await auth().createUserWithEmailAndPassword(
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+    print(_controllerEmail);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    Firebase.initializeApp().whenComplete(() {
+      print("aa");
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,6 +158,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
+                    auth().createUserWithEmailAndPassword(
+                        email: _controllerEmail.text,
+                        password: _controllerPassword.text);
                     var navigator = Navigator.of(context);
                     navigator.push(
                       MaterialPageRoute(

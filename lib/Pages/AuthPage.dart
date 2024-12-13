@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mcc_final/Pages/LoginPage.dart';
 
@@ -9,6 +10,15 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    Firebase.initializeApp().whenComplete(() {
+      print("aa");
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

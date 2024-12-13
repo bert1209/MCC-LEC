@@ -120,6 +120,10 @@ class LoginPageState extends State<LoginPage> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
+                    auth().signInWithEmailAndPassword(
+                      email: _controllerEmail.text,
+                      password: _controllerPassword.text,
+                    );
                     var navigator = Navigator.of(context);
                     navigator.push(
                       MaterialPageRoute(

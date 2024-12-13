@@ -15,6 +15,7 @@ class auth {
       email: email,
       password: password,
     );
+    print('aaaa');
   }
 
   Future<void> createUserWithEmailAndPassword({
@@ -25,6 +26,7 @@ class auth {
       email: email,
       password: password,
     );
+    print('aaaa');
   }
 
   Future<void> signOut() async {
