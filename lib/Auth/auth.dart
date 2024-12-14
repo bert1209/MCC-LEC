@@ -69,7 +69,10 @@ class auth {
         print('No document found for user');
         return null;
       }
-    } catch (e) {
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        print('Permission denied: Check Firestore rules.');
+      }
       print('Error fetching username: $e');
       return null;
     }
@@ -89,9 +92,35 @@ class auth {
         print('No user found with this email');
         return null;
       }
-    } catch (e) {
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        print('Permission denied: Check Firestore rules.');
+      }
       print('Error fetching username by email: $e');
       return null;
+    }
+  }
+
+  // Real-time listener untuk mendapatkan data pengguna
+  Stream<Map<String, dynamic>?> listenToUserData() {
+    try {
+      String uid = _firebaseAuth.currentUser!.uid;
+
+      return _firestore
+          .collection('users')
+          .doc(uid)
+          .snapshots()
+          .map((snapshot) {
+        if (snapshot.exists) {
+          return snapshot.data() as Map<String, dynamic>;
+        } else {
+          print('No document found');
+          return null;
+        }
+      });
+    } catch (e) {
+      print('Error listening to user data: $e');
+      return const Stream.empty(); // Return empty stream on error
     }
   }
 

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mcc_final/Pages/AuthPage.dart';
+import 'package:mcc_final/Pages/GamePage.dart';
+import 'package:mcc_final/Pages/HomePage.dart';
 import 'package:mcc_final/Pages/LoginPage.dart';
+import 'package:mcc_final/Pages/ProfileandAboutPage.dart';
 import 'package:mcc_final/Pages/RegisterPage.dart';
 
 void main() {
@@ -26,6 +29,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/loginPage': (context) => const LoginPage(),
         '/registerPage': (context) => const RegisterPage(),
+        '/homePage': (context) => HomePage(),
+        '/aboutProfilePage': (context) => ProfileandAboutPage(),
+        // '/gamePage': (context) => GamePage(),
       },
     );
   }

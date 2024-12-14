@@ -23,11 +23,28 @@ class LoginPageState extends State<LoginPage> {
   Future<void> signInWithEmailAndPassword() async {
     try {
       await auth().signInWithEmailAndPassword(
-          email: _controllerEmail.text, password: _controllerPassword.text);
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+      );
+      Navigator.pushReplacementNamed(context, '/homePage');
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
+      String errorMessage;
+      if (e.code == 'user-not-found') {
+        errorMessage = 'User with this email does not exist.';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Incorrect password.';
+      } else {
+        errorMessage = e.message ?? 'Login failed.';
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            errorMessage,
+            style: const TextStyle(fontFamily: 'Poppins'),
+          ),
+        ),
+      );
     }
   }
 
@@ -39,8 +56,8 @@ class LoginPageState extends State<LoginPage> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 70),
-              Text(
+              const SizedBox(height: 70),
+              const Text(
                 "Game Box",
                 style: TextStyle(
                   fontSize: 30,
@@ -48,7 +65,7 @@ class LoginPageState extends State<LoginPage> {
                   fontFamily: "Gotham",
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 150,
               ),
               SizedBox(
@@ -71,11 +88,11 @@ class LoginPageState extends State<LoginPage> {
                     fillColor: const Color(0xFFFFFFFF),
                     filled: true,
                     hintText: "Email",
-                    contentPadding: EdgeInsets.all(15),
+                    contentPadding: const EdgeInsets.all(15),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               SizedBox(
@@ -83,7 +100,7 @@ class LoginPageState extends State<LoginPage> {
                 child: TextField(
                   controller: _controllerPassword,
                   style: const TextStyle(fontFamily: "Gotham", fontSize: 15),
-                  obscureText: false,
+                  obscureText: true,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
@@ -98,38 +115,18 @@ class LoginPageState extends State<LoginPage> {
                     fillColor: const Color(0xFFFFFFFF),
                     filled: true,
                     hintText: "Password",
-                    contentPadding: EdgeInsets.all(15),
+                    contentPadding: const EdgeInsets.all(15),
                   ),
                 ),
               ),
-              SizedBox(height: 45),
+              const SizedBox(height: 45),
               SizedBox(
                 width: 335,
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    auth().signInWithEmailAndPassword(
-                      email: _controllerEmail.text,
-                      password: _controllerPassword.text,
-                    );
-                    var navigator = Navigator.of(context);
-                    navigator.push(
-                      MaterialPageRoute(
-                        builder: (builder) {
-                          return HomePage();
-                        },
-                      ),
-                    );
+                    signInWithEmailAndPassword();
                   },
-                  child: Text(
-                    "Sign In",
-                    style: TextStyle(
-                      fontFamily: "Poppin",
-                      fontSize: 20,
-                      color: const Color(0xFFFFFFFF),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color(0xFF000025),
                     backgroundColor: const Color(0xFF00008B),
@@ -137,14 +134,23 @@ class LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  child: const Text(
+                    "Sign In",
+                    style: TextStyle(
+                      fontFamily: "Poppin",
+                      fontSize: 20,
+                      color: Color(0xFFFFFFFF),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Image.asset(
                 "lib/Assets/or.png",
                 width: 350,
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               SizedBox(
                 width: 325,
                 height: 50,

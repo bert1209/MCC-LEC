@@ -51,6 +51,18 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  void onRegister() {
+    createUserWithEmailAndPassword();
+    var navigator = Navigator.of(context);
+    navigator.push(
+      MaterialPageRoute(
+        builder: (builder) {
+          return LoginPage();
+        },
+      ),
+    );
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -139,7 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: TextField(
                   controller: _controllerPassword,
                   style: const TextStyle(fontFamily: "Gotham", fontSize: 15),
-                  obscureText: false,
+                  obscureText: true,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
@@ -164,20 +176,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    createUserWithEmailAndPassword(
-                        // email: _controllerEmail.text,
-                        // password: _controllerPassword.text,
-                        // username: _controllerUsername.text,
-                        // username: _controllerUsername.text,
-                        );
-                    var navigator = Navigator.of(context);
-                    navigator.push(
-                      MaterialPageRoute(
-                        builder: (builder) {
-                          return LoginPage();
-                        },
-                      ),
-                    );
+                    // createUserWithEmailAndPassword();
+                    // var navigator = Navigator.of(context);
+                    // navigator.push(
+                    //   MaterialPageRoute(
+                    //     builder: (builder) {
+                    //       return LoginPage();
+                    //     },
+                    //   ),
+                    // );
+                    onRegister();
                   },
                   child: Text(
                     "Register",
