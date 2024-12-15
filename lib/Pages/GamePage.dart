@@ -153,13 +153,15 @@ class _GamePageState extends State<GamePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children:
                                   game!.minimum_system_requirements.entries
-                                      .map((entry) => Text(
-                                            "${entry.key}: ${entry.value}",
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: "Gotham",
-                                                color: Colors.white),
-                                          ))
+                                      .map(
+                                        (entry) => Text(
+                                          "${entry.key}: ${entry.value}",
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontFamily: "Gotham",
+                                              color: Colors.white),
+                                        ),
+                                      )
                                       .toList(),
                             )
                           : const Text(
