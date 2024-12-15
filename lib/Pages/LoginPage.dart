@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mcc_final/Function/TeksFunction.dart';
 import 'package:mcc_final/Pages/AuthPage.dart';
 import 'package:mcc_final/Pages/HomePage.dart';
@@ -21,30 +22,67 @@ class LoginPageState extends State<LoginPage> {
   final TextEditingController _controllerUsername = TextEditingController();
 
   Future<void> signInWithEmailAndPassword() async {
-    try {
-      await auth().signInWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
-      Navigator.pushReplacementNamed(context, '/homePage');
-    } on FirebaseAuthException catch (e) {
-      String errorMessage;
-      if (e.code == 'user-not-found') {
-        errorMessage = 'User with this email does not exist.';
-      } else if (e.code == 'wrong-password') {
-        errorMessage = 'Incorrect password.';
-      } else {
-        errorMessage = e.message ?? 'Login failed.';
-      }
+    if (_controllerPassword != "      ") {
+      try {
+        await auth().signInWithEmailAndPassword(
+          email: _controllerEmail.text,
+          password: _controllerPassword.text,
+        );
+        Navigator.pushReplacementNamed(context, '/homePage');
+      } on FirebaseAuthException catch (e) {
+        String errorMessage;
+        if (e.code == 'user-not-found') {
+          errorMessage = 'User with this email does not exist.';
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'Incorrect password.';
+        } else {
+          errorMessage = e.message ?? 'Login failed.';
+        }
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            errorMessage,
-            style: const TextStyle(fontFamily: 'Poppins'),
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              errorMessage,
+              style: const TextStyle(fontFamily: 'Poppins'),
+            ),
           ),
-        ),
-      );
+        );
+      }
+    }
+  }
+
+  Future<void> signInWithEmailAndPasswordGoogle() async {
+    final GoogleSignIn _googleSignIn = GoogleSignIn(
+      scopes: ['email'],
+    );
+    final GoogleSignInAccount? account = await _googleSignIn.signIn();
+
+    if (account != null) {
+      try {
+        await auth().signInWithEmailAndPassword(
+          email: account.email,
+          password: "      ".toString(),
+        );
+        Navigator.pushReplacementNamed(context, '/homePage');
+      } on FirebaseAuthException catch (e) {
+        String errorMessage;
+        if (e.code == 'user-not-found') {
+          errorMessage = 'User with this email does not exist.';
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'Incorrect password.';
+        } else {
+          errorMessage = e.message ?? 'Login failed.';
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              errorMessage,
+              style: const TextStyle(fontFamily: 'Poppins'),
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -155,7 +193,9 @@ class LoginPageState extends State<LoginPage> {
                 width: 325,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    signInWithEmailAndPasswordGoogle();
+                  },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color(0xFF000025),
                     backgroundColor: const Color(0xFFFFFFFF),

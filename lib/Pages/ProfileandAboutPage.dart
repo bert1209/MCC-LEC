@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:mcc_final/Auth/oAuth.dart';
 import 'package:mcc_final/Pages/AuthPage.dart';
 
 import '../Auth/auth.dart';
@@ -92,6 +93,7 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                       onPressed: () {
                         // auth().signOut();
                         signOut(context);
+                        signOutGoogle();
                         // Navigator.pushNamed(context, "/loginPage");
                       },
                       child: const Text(

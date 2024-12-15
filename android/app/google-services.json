@@ -12,7 +12,9 @@
           "package_name": "com.example.mcc_final"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {"client_id":"570154092334-pmb0a4uq0vblupqb17abug2o9vbpl4q5.apps.googleusercontent.com","project_id":"mcc-lec","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"}
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA08wy6YyWLdDDJ7YFPSlDUQfyNNyE1Q2E"

@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mcc_final/Auth/oAuth.dart';
 import 'package:mcc_final/Pages/LoginPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Auth/auth.dart';
 import '../Function/TeksFunction.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -51,8 +53,54 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  Future<void> createUserWithEmailAndPasswordGoogle() async {
+    final GoogleSignIn _googleSignIn = GoogleSignIn(
+      scopes: ['email'],
+    );
+    final GoogleSignInAccount? account = await _googleSignIn.signIn();
+    if (account != null) {
+      try {
+        // Membuat pengguna baru dengan email dan password
+        UserCredential userCredential =
+            await _auth.createUserWithEmailAndPassword(
+          email: account.email,
+          password: "      ".toString(),
+        );
+
+        // Menyimpan username ke Firestore
+        await _firestore.collection('users').doc(userCredential.user?.uid).set({
+          'username': account.displayName,
+          'email': account.email,
+          'uid': userCredential.user?.uid,
+        });
+
+        // Navigasi ke halaman login setelah registrasi berhasil
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          errorMessage = e.message;
+        });
+      }
+    }
+  }
+
   void onRegister() {
     createUserWithEmailAndPassword();
+    var navigator = Navigator.of(context);
+    navigator.push(
+      MaterialPageRoute(
+        builder: (builder) {
+          return LoginPage();
+        },
+      ),
+    );
+  }
+
+  void onRegisterGoogle() {
+    createUserWithEmailAndPasswordGoogle();
     var navigator = Navigator.of(context);
     navigator.push(
       MaterialPageRoute(
@@ -219,6 +267,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     // googleSignIn();
                     // signInGoogles(context);
                     // signOutGoogle();
+                    // signInGoogle();
+                    onRegisterGoogle();
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color(0xFF000025),
