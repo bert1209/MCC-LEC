@@ -79,7 +79,10 @@ class _GamePageState extends State<GamePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(game!.image),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Image.network(game!.image),
+                      ),
                       const SizedBox(height: 16),
                       Text(
                         game!.title,

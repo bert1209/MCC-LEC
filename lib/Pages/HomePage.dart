@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
             width: 340,
             child: TextField(
               controller: searchController,
-              style: const TextStyle(fontFamily: "Gotham", fontSize: 15),
+              style: const TextStyle(fontFamily: "Gotham", fontSize: 18),
               obscureText: false,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(

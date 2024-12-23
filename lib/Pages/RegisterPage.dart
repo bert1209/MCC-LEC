@@ -123,6 +123,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFF0000025),
       body: SafeArea(
         child: Center(
@@ -233,7 +234,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     //     },
                     //   ),
                     // );
-                    onRegister();
+                    // onRegister();
+                    createUserWithEmailAndPassword();
                   },
                   child: Text(
                     "Register",
