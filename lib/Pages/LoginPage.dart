@@ -144,7 +144,7 @@ class LoginPageState extends State<LoginPage> {
                             SizedBox(height: screenHeight * 0.01), // Add spacing between the text and text field if needed
 
                             SizedBox(
-                              height: 45, // Control the height of the TextField
+                              height: 40, // Control the height of the TextField
                               child: TextField(
                                 controller: _controllerEmail,
                                 style: TextStyle(
@@ -156,7 +156,7 @@ class LoginPageState extends State<LoginPage> {
                                   hintText: 'Email*',
                                   hintStyle: TextStyle(
                                     fontFamily: 'poppins',
-                                    fontSize: 16,         // Font size for hint text
+                                    fontSize: 14,         // Font size for hint text
                                     color: Colors.grey,   // Color for hint text
                                   ),
                                   filled: true,
@@ -180,7 +180,7 @@ class LoginPageState extends State<LoginPage> {
                             SizedBox(height: screenHeight * 0.01), // Add spacing between the text and text field if needed
 
                             SizedBox(
-                              height: 45, // Control the height of the TextField
+                              height: 40, // Control the height of the TextField
                               child: TextField(
                                 controller: _controllerPassword,
                                 style: TextStyle(
@@ -192,7 +192,7 @@ class LoginPageState extends State<LoginPage> {
                                   hintText: 'Password*',
                                   hintStyle: TextStyle(
                                     fontFamily: 'poppins',
-                                    fontSize: 16,         // Font size for hint text
+                                    fontSize: 14,         // Font size for hint text
                                     color: Colors.grey,   // Color for hint text
                                   ),
                                   filled: true,
