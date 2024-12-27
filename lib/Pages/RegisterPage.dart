@@ -137,7 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       alignment: Alignment.center,
                       child: Container(
 
-                        width: screenWidth * 0.76,
+                        width: screenWidth * 0.77,
                         alignment: Alignment.centerLeft,
                         child: Row(
                           children: [
