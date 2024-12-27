@@ -42,7 +42,7 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
         SnackBar(
           content: Text(
             'Error during sign out: $e',
-            style: const TextStyle(fontFamily: 'Poppins'),
+            style: const TextStyle(fontFamily: 'poppins'),
           ),
         ),
       );
@@ -84,7 +84,7 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                     'Hello, ${snapshot.data}!',
                     style: const TextStyle(
                       fontSize: 24,
-                      fontFamily: "Gotham",
+                      fontFamily: "gotham",
                       color: Colors.white,
                     ),
                   ),
@@ -99,7 +99,7 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                       child: const Text(
                         "Sign Out",
                         style: TextStyle(
-                          fontFamily: "Gotham",
+                          fontFamily: "gotham",
                         ),
                       ))
                 ],

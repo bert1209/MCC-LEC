@@ -83,24 +83,12 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: SemiPoppins
-       fonts:
-         - asset: lib/Font/Poppins-SemiBold.ttf
-         - asset: lib/Font/Poppins-SemiBoldItalic.ttf
-  #         style: italic
-     - family: Poppin
-       fonts:
-         - asset: lib/Font/Poppins-Bold.ttf
-         - asset: lib/Font/Poppins-Regular.ttf
-         - asset: lib/Font/Poppins-Italic.ttf
-  #         weight: 700
-     - family: Bangers
-       fonts:
-         - asset: lib/Font/Bangers-Regular.ttf
-     - family: Gotham
-       fonts:
-         - asset: lib/Font/GothamBold.ttf
-         - asset: lib/Font/GothamMedium.ttf
+    - family: gotham
+      fonts:
+        - asset: lib/Font/Flamante-Roma-Medium.ttf
+    - family: poppins
+      fonts:
+        - asset: lib/Font/Poppins-SemiBold.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

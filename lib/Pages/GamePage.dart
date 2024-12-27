@@ -68,7 +68,7 @@ class _GamePageState extends State<GamePage> {
         backgroundColor: const Color(0xFF000025),
         title: Text(
           game?.title ?? 'Game Details',
-          style: const TextStyle(fontFamily: "Gotham", color: Colors.white),
+          style: const TextStyle(fontFamily: "gotham", color: Colors.white),
         ),
       ),
       body: isLoading
@@ -89,7 +89,7 @@ class _GamePageState extends State<GamePage> {
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          fontFamily: "Gotham",
+                          fontFamily: "gotham",
                           color: Colors.white,
                         ),
                       ),
@@ -98,7 +98,7 @@ class _GamePageState extends State<GamePage> {
                         "Genre: ${game!.genre}",
                         style: const TextStyle(
                             fontSize: 16,
-                            fontFamily: "Gotham",
+                            fontFamily: "gotham",
                             color: Colors.white),
                       ),
                       const SizedBox(height: 8),
@@ -106,7 +106,7 @@ class _GamePageState extends State<GamePage> {
                         "Platform: ${game!.platform}",
                         style: const TextStyle(
                             fontSize: 16,
-                            fontFamily: "Gotham",
+                            fontFamily: "gotham",
                             color: Colors.white),
                       ),
                       const SizedBox(height: 8),
@@ -114,7 +114,7 @@ class _GamePageState extends State<GamePage> {
                         "Release Date: ${game!.release_date}",
                         style: const TextStyle(
                             fontSize: 16,
-                            fontFamily: "Gotham",
+                            fontFamily: "gotham",
                             color: Colors.white),
                       ),
                       const SizedBox(height: 8),
@@ -122,7 +122,7 @@ class _GamePageState extends State<GamePage> {
                         "Publisher: ${game!.publisher}",
                         style: const TextStyle(
                             fontSize: 16,
-                            fontFamily: "Gotham",
+                            fontFamily: "gotham",
                             color: Colors.white),
                       ),
                       const SizedBox(height: 8),
@@ -130,7 +130,7 @@ class _GamePageState extends State<GamePage> {
                         "Developer: ${game!.developer}",
                         style: const TextStyle(
                             fontSize: 16,
-                            fontFamily: "Gotham",
+                            fontFamily: "gotham",
                             color: Colors.white),
                       ),
                       const SizedBox(height: 8),
@@ -138,7 +138,7 @@ class _GamePageState extends State<GamePage> {
                         "Description: ${game!.description}",
                         style: const TextStyle(
                             fontSize: 16,
-                            fontFamily: "Gotham",
+                            fontFamily: "gotham",
                             color: Colors.white),
                       ),
                       const SizedBox(height: 10),
@@ -147,7 +147,7 @@ class _GamePageState extends State<GamePage> {
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            fontFamily: "Gotham",
+                            fontFamily: "gotham",
                             color: Colors.white),
                       ),
                       const SizedBox(height: 8),
@@ -161,7 +161,7 @@ class _GamePageState extends State<GamePage> {
                                           "${entry.key}: ${entry.value}",
                                           style: const TextStyle(
                                               fontSize: 16,
-                                              fontFamily: "Gotham",
+                                              fontFamily: "gotham",
                                               color: Colors.white),
                                         ),
                                       )

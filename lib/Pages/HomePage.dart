@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
             width: 340,
             child: TextField(
               controller: searchController,
-              style: const TextStyle(fontFamily: "Gotham", fontSize: 18),
+              style: const TextStyle(fontFamily: "gotham", fontSize: 18),
               obscureText: false,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                               game.title,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: "Gotham",
+                                  fontFamily: "gotham",
                                   color: Colors.white),
                             ),
                           ),
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                  color: Colors.white, fontFamily: "Gotham"),
+                                  color: Colors.white, fontFamily: "gotham"),
                             ),
                           ),
                         ],
