@@ -6,6 +6,7 @@ import 'package:mcc_final/Pages/HomePage.dart';
 import 'package:mcc_final/Pages/LoginPage.dart';
 import 'package:mcc_final/Pages/ProfileandAboutPage.dart';
 import 'package:mcc_final/Pages/RegisterPage.dart';
+import 'package:mcc_final/Pages/SplashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       debugShowCheckedModeBanner: false,
-      home: const AuthPage(),
+      home: const SplashScreen(),
       routes: {
         '/loginPage': (context) => const LoginPage(),
         '/registerPage': (context) => const RegisterPage(),
