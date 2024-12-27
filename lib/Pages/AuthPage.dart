@@ -52,7 +52,7 @@ class _AuthPageState extends State<AuthPage> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Color(0xFF000025),
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15)),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(1), // Shadow color
@@ -70,14 +70,14 @@ class _AuthPageState extends State<AuthPage> {
                         height: screenHeight * 0.065,
                         child: ElevatedButton(
                           onPressed: () {
-                            // var navigator = Navigator.of(context);
-                            // navigator.push(
-                            //   MaterialPageRoute(
-                            //     builder: (builder) {
-                            //       return LoginPage();
-                            //     },
-                            //   ),
-                            // );
+                            var navigator = Navigator.of(context);
+                            navigator.push(
+                              MaterialPageRoute(
+                                builder: (builder) {
+                                  return LoginPage();
+                                },
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: const Color(0xFF000025),

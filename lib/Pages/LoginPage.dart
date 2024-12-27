@@ -113,7 +113,7 @@ class LoginPageState extends State<LoginPage> {
                   SizedBox(height: screenHeight * 0.035),
                   Align(
                       alignment: Alignment.center,
-                      child: Text('Sign in to Game Box', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'Gotham', fontSize: 25))
+                      child: Text('Sign in to Game Box', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'gotham', fontSize: 25))
                   ),
                   SizedBox(height: screenHeight * 0.045),
                   Align(
@@ -206,7 +206,7 @@ class LoginPageState extends State<LoginPage> {
                             Center(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  //signInWithEmailAndPassword();
+                                  signInWithEmailAndPassword();
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF0000BE), // Change the background color
@@ -273,7 +273,7 @@ class LoginPageState extends State<LoginPage> {
                     height: screenHeight * 0.065,
                     child: ElevatedButton(
                       onPressed: () {
-                        // signInWithEmailAndPasswordGoogle();
+                        signInWithEmailAndPasswordGoogle();
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: const Color(0xFF000025),

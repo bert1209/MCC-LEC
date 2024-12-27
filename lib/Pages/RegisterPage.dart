@@ -284,7 +284,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Center(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  // onRegister();
+                                  onRegister();
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF0000BE), // Change the background color
@@ -351,7 +351,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: screenHeight * 0.065,
                     child: ElevatedButton(
                       onPressed: () {
-                        // onRegisterGoogle();
+                        onRegisterGoogle();
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: const Color(0xFF000025),
