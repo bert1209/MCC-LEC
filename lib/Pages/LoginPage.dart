@@ -110,7 +110,7 @@ class LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(45)
                           ),
                           child: Image.asset('lib/Assets/GamepadBlue.png', height: 55, width: 55,),
-                        )
+                        ),
                     ),
                     SizedBox(height: screenHeight * 0.035),
                     Align(

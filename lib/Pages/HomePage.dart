@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:mcc_final/Pages/GamePage.dart';
 import '../Auth/auth.dart';
 import '../Function/Module.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -72,53 +73,70 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: const Color(0xFF0000025),
       appBar: AppBar(
+        toolbarHeight: 80,
         backgroundColor: const Color(0xFF000025),
-        leading: Padding(
-          padding: const EdgeInsets.only(top: 10, left: 10),
-          child: Container(
-            decoration: BoxDecoration(
-                color: const Color(0xFF00008B),
-                borderRadius: BorderRadius.circular(15)),
-            child: IconButton(
-              color: const Color(0xFF333333),
-              onPressed: () {
-                Navigator.pushNamed(context, "/aboutProfilePage");
-              },
-              icon: const Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-            ),
+        leading: Container(
+          decoration: BoxDecoration(
+              color: const Color(0xFF00008B),
+              borderRadius: BorderRadius.circular(10)),
+
+          margin: const EdgeInsets.fromLTRB(
+              16, 20, 0, 20), // Adds 16px space on the left
+          child: IconButton(
+            color: const Color(0xFFFFFFFF),
+            onPressed: () {
+              Navigator.pushNamed(context, "/aboutProfilePage");
+            },
+            icon: const Icon(Icons.person),
           ),
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(top: 15, bottom: 5),
-          child: SizedBox(
-            width: 340,
-            child: TextField(
-              controller: searchController,
-              style: const TextStyle(fontFamily: "gotham", fontSize: 18),
-              obscureText: false,
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: Color(0xFF777777),
-                    ),
-                    borderRadius: BorderRadius.circular(15)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: Color(0xFF333333),
-                    ),
-                    borderRadius: BorderRadius.circular(15)),
-                fillColor: const Color(0xFFFFFFFF),
-                filled: true,
-                hintText: "Search",
-                contentPadding: const EdgeInsets.all(15),
-              ),
-              onChanged: (value) {
-                filterGames(value);
-              },
+        title: Container(
+          padding: const EdgeInsets.only(
+            top: 11,
+          ),
+          width: 375,
+          height: 70,
+          child: TextField(
+            controller: searchController,
+            style: TextStyle(
+              fontFamily: 'poppins',
+              fontSize: 18,         // Set font size
+              color: Colors.grey.shade800,  // Set text color
             ),
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(10),
+              enabledBorder: OutlineInputBorder(
+
+                borderRadius: BorderRadius.circular(10),
+              ),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              fillColor: const Color(0xFFFFFFFF),
+              filled: true,
+              hintText: "Search",
+              hintStyle: TextStyle(
+                fontFamily: 'poppins',
+                fontSize: 18,         // Font size for hint text
+                color: Colors.grey,   // Color for hint text
+              ),
+              suffixIcon: searchController.text.isNotEmpty
+                  ? IconButton(
+                icon: Icon(Icons.clear),
+                color: Colors.grey,
+                onPressed: () {
+                  searchController.clear(); // Clear the input field
+                  filterGames('');         // Reset the filter
+                },
+              )
+                  : Icon(
+                Icons.search, // Default search icon
+                color: Colors.grey,
+              ),
+            ),
+            onChanged: (value) {
+              filterGames(value);
+            },
           ),
         ),
       ),
@@ -148,43 +166,72 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   },
+
+
                   child: Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5), // Keeps the vertical space between cards
                     child: Card(
-                      color: const Color(0xFF00008B),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.network(
-                            game.image,
-                            fit: BoxFit.cover,
-                            height: 170,
-                            width: double.infinity,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0), // Add border radius
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xFF00008B), Color(0xFF000058)], // Define gradient colors
+                            begin: Alignment.centerRight,
+                            end: Alignment.centerLeft,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              game.title,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                          borderRadius: BorderRadius.circular(5.0), // Match the Card's border radius
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(5.0),
+                                topRight: Radius.circular(5.0),
+                              ),
+                              child: Image.network(
+                                game.image,
+                                fit: BoxFit.cover,
+                                height: 150,
+                                width: double.infinity,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 8, 8, 5),
+                              child: AutoSizeText(
+                                game.title,
+                                style: TextStyle(
+                                  fontFamily: "poppins",
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  height: 1.2,
+                                ),
+                                maxLines: 2,
+                                minFontSize: 16, // Reduce the font size if necessary
+                                overflow: TextOverflow.ellipsis, // Truncate text if it's too long
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: AutoSizeText(
+                                "Genre : ${game.genre}",
+                                style: TextStyle(
                                   fontFamily: "gotham",
-                                  color: Colors.white),
+                                  fontSize: 14,
+                                  color: Colors.grey.shade300,
+                                ),
+                                maxLines: 1,
+                                minFontSize: 14, // Reduce the font size if necessary
+                                overflow: TextOverflow.ellipsis, // Truncate text if it's too long
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              "Genre : ${game.genre}",
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  color: Colors.white, fontFamily: "gotham"),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
+
                   ),
                 );
               },
