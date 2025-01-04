@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: screenWidth * 0.5),
+            SizedBox(height: screenWidth * 0.55),
             Image.asset('lib/Assets/Gamepad.png', height: 180,width: 180,),
             SizedBox(height: screenHeight * 0.02),
             const Text(
