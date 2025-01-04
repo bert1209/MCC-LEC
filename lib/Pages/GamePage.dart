@@ -79,7 +79,7 @@ class _GamePageState extends State<GamePage> {
           padding: const EdgeInsets.only(left: 5.0),
           child: Text(
             game?.title ?? 'Game Details',
-            style: const TextStyle(fontFamily: "poppins", color: Colors.white, fontSize: 24),
+            style: const TextStyle(fontFamily: "poppins", color: Colors.white, fontSize: 20),
           ),
         ),
       ),
@@ -114,7 +114,7 @@ class _GamePageState extends State<GamePage> {
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "poppins",
                                 color: Colors.white,
-                                height: 1.2
+                                height: 1.5
                               ),
                             ),
                             SizedBox(height: screenHeight * 0.005),
@@ -188,9 +188,11 @@ class _GamePageState extends State<GamePage> {
                             Text(
                               "${game!.description}",
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: "gotham",
-                                  color: Colors.grey.shade200),
+                                fontSize: 16,
+                                fontFamily: "gotham",
+                                color: Colors.grey.shade200,
+                                height: 1.2
+                              ),
                             ),
 
                             SizedBox(height: screenHeight * 0.03),

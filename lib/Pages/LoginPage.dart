@@ -115,7 +115,7 @@ class LoginPageState extends State<LoginPage> {
                     SizedBox(height: screenHeight * 0.035),
                     Align(
                         alignment: Alignment.center,
-                        child: Text('Sign in to Game Box', style: TextStyle(color: Color(0xFFFFFFFF), fontFamily: 'gotham', fontSize: 25))
+                        child: Text('Sign in to Game Box', style: TextStyle(color: Color(0xFFEFEFEF), fontFamily: 'gotham', fontSize: 25))
                     ),
                     SizedBox(height: screenHeight * 0.045),
                     Align(
@@ -185,6 +185,7 @@ class LoginPageState extends State<LoginPage> {
                                 height: 40, // Control the height of the TextField
                                 child: TextField(
                                   controller: _controllerPassword,
+                                  obscureText: true,
                                   style: TextStyle(
                                     fontFamily: 'poppins',
                                     fontSize: 16,         // Set font size

@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                               child: Image.network(
                                 game.image,
                                 fit: BoxFit.cover,
-                                height: 150,
+                                height: 155,
                                 width: double.infinity,
                               ),
                             ),
@@ -208,11 +208,12 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.white,
                                   height: 1.2,
                                 ),
-                                maxLines: 2,
+                                maxLines: 1,
                                 minFontSize: 16, // Reduce the font size if necessary
                                 overflow: TextOverflow.ellipsis, // Truncate text if it's too long
                               ),
                             ),
+
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0),
                               child: AutoSizeText(

@@ -265,6 +265,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 height: 40, // Control the height of the TextField
                                 child: TextField(
                                   controller: _controllerPassword,
+                                  obscureText: true,
                                   style: TextStyle(
                                     fontFamily: 'poppins',
                                     fontSize: 16,         // Set font size
