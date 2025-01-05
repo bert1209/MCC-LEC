@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mcc_final/Pages/AboutPage.dart';
 import 'package:mcc_final/Pages/AuthPage.dart';
 import 'package:mcc_final/Pages/GamePage.dart';
 import 'package:mcc_final/Pages/HomePage.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/registerPage': (context) => const RegisterPage(),
         '/homePage': (context) => HomePage(),
         '/aboutProfilePage': (context) => ProfileandAboutPage(),
+        '/aboutPage': (context) => AboutPage(),
         // '/gamePage': (context) => GamePage(),
       },
     );

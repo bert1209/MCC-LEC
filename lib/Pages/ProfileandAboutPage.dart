@@ -8,8 +8,6 @@ import 'package:mcc_final/Auth/oAuth.dart';
 import 'package:mcc_final/Pages/AuthPage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../Auth/auth.dart';
-
 class ProfileandAboutPage extends StatefulWidget {
   const ProfileandAboutPage({super.key});
 
@@ -19,6 +17,7 @@ class ProfileandAboutPage extends StatefulWidget {
 
 class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
   final ScrollController _scrollController = ScrollController();
+  bool _isInfoButton = true; // Track the button state (true = info, false = person)
 
   Future<String?> fetchUsername() async {
     final user = FirebaseAuth.instance.currentUser;
@@ -56,6 +55,28 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
     super.dispose();
   }
 
+  void _toggleScroll() {
+    if (_isInfoButton) {
+      // Scroll to the bottom
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(seconds: 2),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      // Scroll to the top
+      _scrollController.animateTo(
+        0.0,
+        duration: const Duration(seconds: 2),
+        curve: Curves.easeInOut,
+      );
+    }
+    // Toggle the button state
+    setState(() {
+      _isInfoButton = !_isInfoButton;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -67,10 +88,10 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
         backgroundColor: const Color(0xFF000025),
         leading: Container(
           decoration: BoxDecoration(
-              color: const Color(0xFF00008B),
-              borderRadius: BorderRadius.circular(10)),
-          margin: const EdgeInsets.fromLTRB(
-              16, 20, 0, 20),
+            color: const Color(0xFF00008B),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          margin: const EdgeInsets.fromLTRB(16, 20, 0, 20),
           child: IconButton(
             color: const Color(0xFFEFEFEF),
             onPressed: () {
@@ -81,44 +102,40 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
         ),
         title: Padding(
           padding: const EdgeInsets.only(left: 5.0),
-          child: Text(
-            'Profile & About',
-            style: const TextStyle(fontFamily: "poppins", color: Color(0xFFEFEFEF), fontSize: 20),
+          child: const Text(
+            'My Profile',
+            style: TextStyle(
+                fontFamily: "poppins", color: Color(0xFFEFEFEF), fontSize: 20),
           ),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 14, 14, 14),
             child: IconButton(
-              onPressed: () {
-                // Scroll to the bottom when the info button is clicked
-                _scrollController.animateTo(
-                  _scrollController.position.maxScrollExtent,
-                  duration: const Duration(seconds: 2),
-                  curve: Curves.easeInOut,
-                );
-              },
-              icon: Icon(Icons.info_outline_rounded, color: Color(0xFFEFEFEF), size: 30),
+              onPressed: _toggleScroll, // Call the toggle scroll function
+              icon: Icon(
+                _isInfoButton ? Icons.info_outline_rounded : Icons.person,
+                color: const Color(0xFFEFEFEF),
+                size: 30,
+              ),
             ),
-          )
+          ),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          controller: _scrollController, // Attach the controller here
+          physics: const NeverScrollableScrollPhysics(),
+          controller: _scrollController,
           child: Stack(
             children: [
-              // Scrollable Background Image
               Column(
                 children: [
                   SizedBox(height: screenHeight * 0.15),
-
                   Image.network(
                     'https://media.giphy.com/media/CQl0tM5gYyqQg/giphy.gif',
-                    height: screenHeight * 1, // Extend the height for scrolling
+                    height: screenHeight * 1,
                     fit: BoxFit.cover,
                   ),
-
                   Container(
                     width: screenWidth * 1,
                     decoration: BoxDecoration(
@@ -131,132 +148,65 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.only(left: 16.0, right:  16.0),
                           child: Column(
                             children: [
-                              SizedBox(height: screenHeight * 0.05),
-
+                              SizedBox(height: screenHeight * 0.035),
                               Align(
                                 alignment: Alignment.topLeft,
-                                child: Text('About', style: TextStyle(fontSize: 24, color: Color(0xFFEFEFEF), fontWeight: FontWeight.bold, fontFamily: 'gotham')),
+                                child: Text('About',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        color: Color(0xFFEFEFEF),
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'gotham')),
                               ),
-
                               SizedBox(height: screenHeight * 0.015),
-
                               Align(
                                 alignment: Alignment.topLeft,
-                                child: Text('Game Box is a community platform for gamers to share, discuss, and explore gaming trends, exchanging insights and experiences about console, PC, and mobile games.', style: TextStyle(fontSize: 16, color: Colors.grey.shade200, fontFamily: 'poppins', height: 1.5)),
+                                child: Text(
+                                  'Game Box is a community platform for gamers to share, discuss, and explore gaming trends, exchanging insights and experiences about console, PC, and mobile games.',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey.shade200,
+                                      fontFamily: 'poppins',
+                                      height: 1.5
+                                  ),
+                                ),
                               ),
-
-                              SizedBox(height: screenHeight * 0.04),
                             ],
                           ),
                         ),
-                        Container(
-                          width: screenWidth * 1,
-                          color: Color(0xFF00008B),
-                          child: Column(
-                            children: [
-                              SizedBox(height: screenHeight * 0.02),
-                              Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Text(
-                                  '"Find the games. Share the journey."',
-                                  style: TextStyle(
-                                    color: Colors.grey.shade200,
-                                    fontFamily: 'poppins',
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.2
-                                  ),
-                                  textAlign: TextAlign.center, // Optional for ensuring text alignment
-                                ),
+                        SizedBox(height: screenHeight * 0.01,),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Want to know more?",
+                              style: TextStyle(
+                                color: Colors.grey.shade300,
                               ),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/aboutPage');
+                                },
+                                child:
+                                Text("Click here!", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white,),)
+                            )
+                          ],
+                        ),
 
-                              SizedBox(height: screenHeight * 0.01,),
+                        SizedBox(height: screenHeight * 0.03,),
 
-                              Row(
-                                children: [
-                                  SizedBox(width: screenWidth * 0.03,),
 
-                                  Row(
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          // Add your action here, e.g., open Facebook
-                                        },
-                                        child: Container(
-                                          height: 33,
-                                          width: 33,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFEFEFEF),
-                                            borderRadius: BorderRadius.circular(45),
-                                          ),
-                                          child: Icon(
-                                            Icons.facebook,
-                                            color: Color(0xFF000000),
-                                            size: 25,
-                                          ),
-                                        ),
-                                      ),
-
-                                      SizedBox(width: screenWidth * 0.018),
-
-                                      GestureDetector(
-                                        onTap: () {
-                                          // Add your action here, e.g., open WhatsApp
-                                        },
-                                        child: Container(
-                                          height: 33,
-                                          width: 33,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFEFEFEF),
-                                            borderRadius: BorderRadius.circular(45),
-                                          ),
-                                          child: Image.asset(
-                                            "lib/Assets/Whatsapp.png",
-                                            width: 20, // Adjusted to fit within the container
-                                            height: 20,
-                                          ),
-                                        ),
-                                      ),
-
-                                      SizedBox(width: screenWidth * 0.018),
-
-                                      GestureDetector(
-                                        onTap: () {
-                                          // Add your action here, e.g., open Instagram
-                                        },
-                                        child: Container(
-                                          height: 33,
-                                          width: 33,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFEFEFEF),
-                                            borderRadius: BorderRadius.circular(45),
-                                          ),
-                                          child: Image.asset(
-                                            "lib/Assets/instagram.png",
-                                            width: 20,
-                                            height: 20,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: screenHeight * 0.015,),
-                            ],
-                          ),
-                        )
 
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
-
-              // Scrollable Foreground Content
               Column(
                 children: [
                   Container(
@@ -299,7 +249,6 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                                 ),
                               ),
                               SizedBox(height: screenHeight * 0.03),
-
                               AutoSizeText(
                                 'Hello, ${snapshot.data}!',
                                 style: TextStyle(
@@ -311,7 +260,6 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                                 minFontSize: 25,
                                 overflow: TextOverflow.ellipsis,
                               ),
-
                               SizedBox(height: screenHeight * 0.015),
                               SizedBox(
                                 width: screenWidth * 0.75,
@@ -319,7 +267,6 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     signOut(context);
-                                    signOutGoogle();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     foregroundColor: const Color(0xFF000025),
@@ -357,7 +304,6 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                       },
                     ),
                   ),
-                  // Additional spacing or content
                   SizedBox(height: screenHeight * 1),
                 ],
               ),
