@@ -127,19 +127,76 @@ class _AboutPageState extends State<AboutPage> {
                               Text(
                                 "Delbert Melvin Setioso",
                                 style: const TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontFamily: "poppins",
                                     color: Colors.white),
                               ),
 
                               SizedBox(height: 5,),
-                              Text(
-                                "- A passionate programmer committed to continuous learning and embracing challenges to grow in the ever-evolving tech world.",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: "gotham",
-                                    color: Colors.grey.shade500,
-                                    height: 1.2
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Role',
+                                      style: TextStyle(
+                                        fontFamily: 'gotham',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade500, // Original color for 'Banboo'
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "     Backend Developer",
+                                      style: TextStyle(
+                                        fontFamily: 'poppins',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade200, // White color for 'Store'
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'NIM',
+                                      style: TextStyle(
+                                        fontFamily: 'gotham',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade500, // Original color for 'Banboo'
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "      2702266751",
+                                      style: TextStyle(
+                                        fontFamily: 'poppins',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade200, // White color for 'Store'
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Major',
+                                      style: TextStyle(
+                                        fontFamily: 'gotham',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade500, // Original color for 'Banboo'
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "   Mobile Application & Technology",
+                                      style: TextStyle(
+                                        fontFamily: 'poppins',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade200, // White color for 'Store'
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -171,19 +228,76 @@ class _AboutPageState extends State<AboutPage> {
                               Text(
                                 "Rayden Blezworth Arwan",
                                 style: const TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontFamily: "poppins",
                                     color: Colors.white),
                               ),
 
                               SizedBox(height: 5,),
-                              Text(
-                                "- An enthusiastic programmer dedicated to constant learning and tackling challenges to advance in the ever-changing tech landscape.",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: "gotham",
-                                    color: Colors.grey.shade500,
-                                    height: 1.2
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Role',
+                                      style: TextStyle(
+                                        fontFamily: 'gotham',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade500, // Original color for 'Banboo'
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "     UI Developer",
+                                      style: TextStyle(
+                                        fontFamily: 'poppins',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade200, // White color for 'Store'
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'NIM',
+                                      style: TextStyle(
+                                        fontFamily: 'gotham',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade500, // Original color for 'Banboo'
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "      2702266801",
+                                      style: TextStyle(
+                                        fontFamily: 'poppins',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade200, // White color for 'Store'
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Major',
+                                      style: TextStyle(
+                                        fontFamily: 'gotham',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade500, // Original color for 'Banboo'
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "   Mobile Application & Technology",
+                                      style: TextStyle(
+                                        fontFamily: 'poppins',
+                                        fontSize: 14,
+                                        color: Colors.grey.shade200, // White color for 'Store'
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
