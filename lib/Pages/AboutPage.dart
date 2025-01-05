@@ -47,7 +47,7 @@ class _AboutPageState extends State<AboutPage> {
           children: [
             Container(
               width: screenWidth * 1,
-              height: screenHeight * 0.6,
+              height: screenHeight * 0.62,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFF000025), Color(0xFF000058)], // Start and end colors for the gradient
@@ -202,7 +202,7 @@ class _AboutPageState extends State<AboutPage> {
               color: Color(0xFF00008B),
               child: Column(
                 children: [
-                  SizedBox(height: screenHeight * 0.045),
+                  SizedBox(height: screenHeight * 0.03),
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: Text(
@@ -218,11 +218,9 @@ class _AboutPageState extends State<AboutPage> {
                     ),
                   ),
 
-                  SizedBox(height: screenHeight * 0.025),
-
                   Row(
                     children: [
-                      SizedBox(width: screenWidth * 0.05),
+                      SizedBox(width: screenWidth * 0.08),
                       Row(
                         children: [
                           GestureDetector(
@@ -243,7 +241,7 @@ class _AboutPageState extends State<AboutPage> {
                               ),
                             ),
                           ),
-                          SizedBox(width: screenWidth * 0.018),
+                          SizedBox(width: screenWidth * 0.02),
                           GestureDetector(
                             onTap: () {
                               // Add your action here, e.g., open WhatsApp
@@ -262,7 +260,7 @@ class _AboutPageState extends State<AboutPage> {
                               ),
                             ),
                           ),
-                          SizedBox(width: screenWidth * 0.018),
+                          SizedBox(width: screenWidth * 0.02),
                           GestureDetector(
                             onTap: () {
                               // Add your action here, e.g., open Instagram
