@@ -177,7 +177,7 @@ class _ProfileandAboutPageState extends State<ProfileandAboutPage> {
                             ],
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01,),
+                        SizedBox(height: screenHeight * 0.015,),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
